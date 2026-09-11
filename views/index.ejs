@@ -1,0 +1,19 @@
+<html>
+  <body>    
+    <h1>Messages</h1>
+    <% messages.forEach((message) => { %>
+    <div>
+            <ul>
+              <li>
+                Text: <%= message.text %>
+              </li>
+              <li>Sender: <%= message.user %></li>
+              <li>Date: <%= message.added %></li>
+            </ul>
+    </div>
+          <% }); %>
+
+    <%- include('footer') %>
+
+  </body>
+</html>

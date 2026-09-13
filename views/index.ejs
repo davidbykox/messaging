@@ -1,19 +1,99 @@
-<html>
-  <body>    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Messages</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+      font-size: 2rem;
+    }
+
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .message {
+      background: white;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .sender {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .date {
+      color: #777;
+      font-size: 0.85rem;
+    }
+
+    .text {
+      margin: 0;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .new-message { display: inline-block; margin-top: 25px; padding: 12px 20px; background: #222; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: background 0.2s ease, transform 0.2s ease; } .new-message:hover { background: #444; transform: translateY(-1px); }
+  </style>
+</head>
+
+<body>
+  <main class="container">
     <h1>Messages</h1>
-    <% messages.forEach((message) => { %>
-    <div>
-            <ul>
-              <li>
-                Text: <%= message.text %>
-              </li>
-              <li>Sender: <%= message.user %></li>
-              <li>Date: <%= message.added %></li>
-            </ul>
+
+    <div class="messages">
+      <% messages.forEach((message) => { %>
+        <article class="message">
+          <div class="message-header">
+            <span class="sender">
+              <%= message.username %>
+            </span>
+
+            <span class="date">
+              <%= message.created_at %>
+            </span>
+          </div>
+
+          <p class="text">
+            <%= message.message %>
+          </p>
+        </article>
+      <% }); %>
     </div>
-          <% }); %>
 
-    <%- include('footer') %>
-
-  </body>
+<a href="/new" class="new-message">Send a message</a>
+</main>
+</body>
 </html>
